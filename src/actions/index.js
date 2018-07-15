@@ -1,12 +1,14 @@
 import { ADD_BOOK, DELETE_BOOK } from '../constants';
+import moment from 'moment';
 
 export const addBook = (title, author, page) => {
-  console.log(title, author, page)
+  let date = moment().valueOf()
   const action = {
     type: ADD_BOOK,
     title,
     author,
-    page
+    page,
+    date
   }
 
   return action;

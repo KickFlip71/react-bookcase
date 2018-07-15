@@ -1,4 +1,5 @@
 import React from 'react'
+import moment from 'moment'
 
 const BookList = ({books, deleteBook}) => {
   return (
@@ -15,6 +16,7 @@ const BookList = ({books, deleteBook}) => {
                 <div className='list-item'>Title: {book.title}</div>
                 <div className='list-item'>Author: {book.author}</div>
                 <div className='list-item'>Page: {book.page}</div>
+                <div className='list-item'>Created: {moment(new Date(book.date)).format('YYYY-MM-DD')}</div>
               </div>
             </li>
           )

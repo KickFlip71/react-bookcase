@@ -5,6 +5,7 @@ const book = (action) => {
     title: action.title,
     author: action.author,
     page: action.page,
+    date: action.date,
     id: Math.random()
   }
 }
