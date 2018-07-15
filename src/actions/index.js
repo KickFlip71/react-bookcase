@@ -1,9 +1,12 @@
 import { ADD_BOOK, DELETE_BOOK } from '../constants';
 
-export const addBook = (text) => {
+export const addBook = (title, author, page) => {
+  console.log(title, author, page)
   const action = {
     type: ADD_BOOK,
-    text
+    title,
+    author,
+    page
   }
 
   return action;

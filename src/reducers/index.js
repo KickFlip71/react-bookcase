@@ -2,7 +2,9 @@ import { ADD_BOOK, DELETE_BOOK } from '../constants'
 
 const book = (action) => {
   return {
-    text: action.text,
+    title: action.title,
+    author: action.author,
+    page: action.page,
     id: Math.random()
   }
 }

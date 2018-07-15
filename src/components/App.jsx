@@ -2,41 +2,27 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import { addBook, deleteBook } from '../actions'
-
+import BookList from './book-list'
 class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      text: ''
+      title: '',
+      author: '',
+      page: ''
     }
   }
 
   addBook() {
-    this.props.addBook(this.state.text)
+    this.props.addBook(
+      this.state.title,
+      this.state.author,
+      this.state.page,
+    )
   }
 
   deleteBook(id) {
     this.props.deleteBook(id)
-  }
-  
-  renderBooks() {
-    const { books } = this.props;
-    return (
-      <ul className='list-group col-sm-6'>
-        {
-          books.map(book => {
-            return (
-              <li key={book.id} className='list-group-item'>
-                <div className='list-item'>{book.text}</div>
-                <div 
-                  className='list-item delete-button'
-                  onClick={() => this.deleteBook(book.id)}>&#x2715;</div>
-              </li>
-            )
-          })
-        }
-      </ul>
-    )
   }
 
   render() {
@@ -45,23 +31,60 @@ class App extends Component {
         <div className='title'>
           <h2>You'r bookcase</h2>
         </div>
-        <div className="input-group mb-3">
-          <input 
-            type="text" 
-            className="form-control" 
-            placeholder="Book name"
-            onChange={event => this.setState({text: event.target.value})}
-          />
-          <div className="input-group-append">
-            <button 
-              className="btn btn-success" 
-              type="button"
-              onClick={() => this.addBook()}>
-              Add a book
-            </button>
+        <div className="form-group row">
+          <label 
+            htmlFor="Title" 
+            className="col-sm-2 col-form-label">
+            Title
+          </label>
+          <div className="col-sm-10">
+            <input
+              htmlFor='Title' 
+              className="form-control" 
+              id="Title" 
+              onChange={event => this.setState({title: event.target.value})}
+              />
           </div>
         </div>
-        { this.renderBooks() }
+        <div className="form-group row">
+          <label 
+            htmlFor="Author" 
+            className="col-sm-2 col-form-label">
+            Author
+          </label>
+          <div className="col-sm-10">
+            <input
+              htmlFor='Author' 
+              className="form-control" 
+              id="Author"
+              onChange={event => this.setState({author: event.target.value})}
+              />
+          </div>
+        </div>
+        <div className="form-group row">
+          <label 
+            htmlFor="Page" 
+            className="col-sm-2 col-form-label">
+            Page
+          </label>
+          <div className="col-sm-10">
+            <input
+              htmlFor='Page' 
+              className="form-control" 
+              id="Page" 
+              onChange={event => this.setState({page: event.target.value})}
+              />
+          </div>
+        </div>
+        <button 
+          className="submit-btn btn btn-success" 
+          type="button"
+          onClick={() => this.addBook()}>
+          Add a book
+        </button>
+        <BookList 
+          books={this.props.books}
+          deleteBook={this.props.deleteBook}/>
       </div>
     )
   }

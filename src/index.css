@@ -5,12 +5,24 @@
   align-items: center;
 }
 
+.BookList {
+  padding-top: 20px;
+}
+
 .title {
   text-align: center;
 }
 
 .list-item {
   display: inline-block;
+}
+
+.list-group .list-item {
+  display: block;
+}
+
+.submit-btn {
+  text-align: left;
 }
 
 .delete-button {
