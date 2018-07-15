@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { addBook, deleteBook } from '../actions'
+import { addBook, deleteBook, clearBooks } from '../actions'
 import BookList from './book-list'
 class App extends Component {
   constructor(props){
@@ -22,7 +22,11 @@ class App extends Component {
   }
 
   deleteBook(id) {
-    this.props.deleteBook(id)
+    this.props.deleteBook(id);
+  }
+
+  clearBooks() {
+    this.props.clearBooks();
   }
 
   render() {
@@ -76,12 +80,20 @@ class App extends Component {
               />
           </div>
         </div>
-        <button 
-          className="submit-btn btn btn-success" 
-          type="button"
-          onClick={() => this.addBook()}>
-          Add a book
-        </button>
+        <div className='btn-toolbar' role='toolbar'>
+          <button 
+            className="submit-btn btn btn-success mr-2" 
+            type="button"
+            onClick={() => this.addBook()}>
+            Add a book
+          </button>
+          <button 
+            className="submit-btn btn btn-success" 
+            type="button"
+            onClick={() => this.clearBooks()}>
+            Clear all books
+          </button>
+        </div>
         <BookList 
           books={this.props.books}
           deleteBook={this.props.deleteBook}/>
@@ -101,4 +113,4 @@ const mapDispatchToProps = (dispatch) => {
 
 }
 
-export default connect(mapStateToProps, { addBook, deleteBook })(App);
+export default connect(mapStateToProps, { addBook, deleteBook, clearBooks })(App);

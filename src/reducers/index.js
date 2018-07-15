@@ -1,5 +1,5 @@
 import { bake_cookie, read_cookie } from 'sfcookies'
-import { ADD_BOOK, DELETE_BOOK } from '../constants'
+import { ADD_BOOK, DELETE_BOOK, CLEAR_BOOKS } from '../constants'
 
 const book = (action) => {
   return {
@@ -27,6 +27,10 @@ const books = (state = [], action) => {
       return books;
     case DELETE_BOOK:
       books = removeById(state, action.id)
+      bake_cookie('books', books)
+      return books;
+    case CLEAR_BOOKS:
+      books = []
       bake_cookie('books', books)
       return books;
     default:
